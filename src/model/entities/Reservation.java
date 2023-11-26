@@ -16,7 +16,7 @@ public class Reservation {
 	public Reservation() {
 	}
 
-	public Reservation(Integer roomNumber, LocalDate checkin, LocalDate checkout) throws DomainException {
+	public Reservation(Integer roomNumber, LocalDate checkin, LocalDate checkout) {
 		if (checkin.isAfter(checkout)) {
 			throw new DomainException("Check-out date must be after check-in date");
 		}
@@ -47,7 +47,7 @@ public class Reservation {
 		return (int) duration.toDays();
 	}
 
-	public void updateDates(LocalDate checkin, LocalDate checkout) throws DomainException {
+	public void updateDates(LocalDate checkin, LocalDate checkout) {
 		LocalDate now = LocalDate.parse("06/06/2018", fmt1);
 		if (checkin.isBefore(now) || checkout.isBefore(now)) {
 			throw new DomainException("Reservation dates for update must be future dates");

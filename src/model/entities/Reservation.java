@@ -41,9 +41,17 @@ public class Reservation {
 		return (int) duration.toDays();
 	}
 	
-	public void updateDates(LocalDate checkin, LocalDate checkout) {
+	public String updateDates(LocalDate checkin, LocalDate checkout) {
+		LocalDate now = LocalDate.parse("06/06/2018", Reservation.fmt1);
+		if (checkin.isBefore(now) || checkout.isBefore(now)) {
+			return "Reservation dates for update must be future dates";
+			
+		} else if (checkin.isAfter(checkout)) {
+			return "Check-out date must be after check-in date";
+		}
 		this.checkin = checkin;
 		this.checkout = checkout;
+		return null;
 	}
 	
 	public String toString() {
